@@ -20,6 +20,8 @@ li {
 	position: relative;
 	padding: 5px 0;
 	border-bottom: 1px solid #bfbfbf;
+	font-size: 20px;
+	font-weight: 300;
 }
 
 .container {
@@ -63,6 +65,7 @@ li {
 	padding: 12px 8px;
 	border-bottom: 1px solid #bfbfbf;
 	height: calc(100vh - 130px - 55px);
+	overflow-y: scroll;
 }
 
 .add-item {
@@ -95,4 +98,9 @@ input {
 
 .add {
 	color: #1aa6b7;
+}
+
+.done {
+	text-decoration: line-through;
+	font-style: italic;
 }

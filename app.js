@@ -105,7 +105,7 @@ TODO_LIST.addEventListener("click", (event) => {
 			// change the done value of the li objects in the list to true
 			list[changeId].done = true;
 		} else {
-			// change the done value of the li objects in the list to true
+			// change the done value of the li objects in the list to false
 			list[changeId].done = false;
 			target.setAttribute("class", "far fa-circle bullet");
 			target.parentElement.classList.remove("done")

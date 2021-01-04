@@ -18,7 +18,12 @@ if (localStorage.getItem("tododata") == null) {
 	id = 0;
 } else {
 	list = JSON.parse(localStorage.getItem("tododata"));
-	id = list.length;
+	/* duplicate id issue when id = list.length was used
+	cause when the page is being refreshed the id is obtained from
+	the todoData and some items might have been deleted */
+	// array containing the ids
+	let maxList = list.map((item) => item.id);
+	id = Math.max(...maxList) + 1;
 	updateTodo();
 }
 
@@ -50,7 +55,7 @@ function addToDo (item, done) {
 function deleteTodo (id) {
 	var removeIndex = list.map((item) => item.id).indexOf(id);
 	list.splice(removeIndex, 1);
-	console.log(list);
+	// console.log(list);
 	updateTodo ();
 	// save the changes made to the list to localStorage
 	localStorage.setItem("tododata", JSON.stringify(list));
@@ -87,15 +92,13 @@ ADD_BUTTON.addEventListener("click", () => addToDo(INPUT.value));
 // deletes task when delete buttton is being clicked
 TODO_LIST.addEventListener("click", (event) => {
 	var target = event.target;
-	console.log(target);
+	// console.log(target);
 	// gets the value of id attributes of li element and converts it to number
 	var targetId = parseInt(target.parentElement.getAttribute("id"));
 	if (target.classList.contains("delete")) {
-		console.log("delete");
 		console.log(targetId);
 		deleteTodo(targetId);
 	} else if (target.classList.contains("bullet")) {
-		console.log("bullet");
 		// gets the correct index of the targetId in the list 
 		// (cause some items might have deleted)
 		var changeId = list.map((item) => item.id).indexOf(targetId);

@@ -28,7 +28,7 @@ if (localStorage.getItem("tododata") == null) {
 }
 
 // function to add items to todo list
-function addToDo (item, done) {
+function addToDo (item) {
 	if (item == "") {return ;}
 		let itemElement = `
 		<li id = ${id}>
@@ -123,5 +123,11 @@ CLEAR.addEventListener("click", () => {
 	localStorage.clear();
 	location.reload();
 }
-
 );
+
+// adds the item when enter key is pressed
+document.addEventListener("keyup", (event) => {
+	if (event.key === "Enter") {
+		addToDo(INPUT.value);
+	}
+} )
